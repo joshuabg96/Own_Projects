@@ -1,0 +1,1155 @@
+
+
+Microchip MPLAB XC8 Assembler V2.40 build 20220703182018 
+                                                                                               Sun Oct 23 16:45:09 2022
+
+Microchip MPLAB XC8 C Compiler v2.40 (Free license) build 20220703182018 Og1 
+     1                           	processor	16F877A
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	idataCOMMON,global,class=CODE,delta=2,noexec
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	dataCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     9                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+    10                           	psect	maintext,global,class=CODE,split=1,delta=2
+    11                           	psect	text1,local,class=CODE,merge=1,delta=2
+    12                           	psect	text2,local,class=CODE,merge=1,delta=2
+    13                           	psect	intentry,global,class=CODE,delta=2
+    14                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=2,noexec
+    15                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    16                           	dabs	1,0x7E,2
+    17     0000                     
+    18                           ; Version 2.40
+    19                           ; Generated 17/11/2021 GMT
+    20                           ; 
+    21                           ; Copyright © 2021, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    22                           ; All rights reserved.
+    23                           ; 
+    24                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    25                           ; 
+    26                           ; Redistribution and use in source and binary forms, with or without modification, are
+    27                           ; permitted provided that the following conditions are met:
+    28                           ; 
+    29                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    30                           ;        conditions and the following disclaimer.
+    31                           ; 
+    32                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    33                           ;        of conditions and the following disclaimer in the documentation and/or other
+    34                           ;        materials provided with the distribution. Publication is not required when
+    35                           ;        this file is used in an embedded application.
+    36                           ; 
+    37                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    38                           ;        software without specific prior written permission.
+    39                           ; 
+    40                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    41                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    42                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    43                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    44                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    45                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    46                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    47                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    48                           ; 
+    49                           ; 
+    50                           ; Code-generator required, PIC16F877A Definitions
+    51                           ; 
+    52                           ; SFR Addresses
+    53     0000                     	;# 
+    54     0001                     	;# 
+    55     0002                     	;# 
+    56     0003                     	;# 
+    57     0004                     	;# 
+    58     0005                     	;# 
+    59     0006                     	;# 
+    60     0007                     	;# 
+    61     0008                     	;# 
+    62     0009                     	;# 
+    63     000A                     	;# 
+    64     000B                     	;# 
+    65     000C                     	;# 
+    66     000D                     	;# 
+    67     000E                     	;# 
+    68     000E                     	;# 
+    69     000F                     	;# 
+    70     0010                     	;# 
+    71     0011                     	;# 
+    72     0012                     	;# 
+    73     0013                     	;# 
+    74     0014                     	;# 
+    75     0015                     	;# 
+    76     0015                     	;# 
+    77     0016                     	;# 
+    78     0017                     	;# 
+    79     0018                     	;# 
+    80     0019                     	;# 
+    81     001A                     	;# 
+    82     001B                     	;# 
+    83     001B                     	;# 
+    84     001C                     	;# 
+    85     001D                     	;# 
+    86     001E                     	;# 
+    87     001F                     	;# 
+    88     0081                     	;# 
+    89     0085                     	;# 
+    90     0086                     	;# 
+    91     0087                     	;# 
+    92     0088                     	;# 
+    93     0089                     	;# 
+    94     008C                     	;# 
+    95     008D                     	;# 
+    96     008E                     	;# 
+    97     0091                     	;# 
+    98     0092                     	;# 
+    99     0093                     	;# 
+   100     0094                     	;# 
+   101     0098                     	;# 
+   102     0099                     	;# 
+   103     009C                     	;# 
+   104     009D                     	;# 
+   105     009E                     	;# 
+   106     009F                     	;# 
+   107     010C                     	;# 
+   108     010D                     	;# 
+   109     010E                     	;# 
+   110     010F                     	;# 
+   111     018C                     	;# 
+   112     018D                     	;# 
+   113     0000                     	;# 
+   114     0001                     	;# 
+   115     0002                     	;# 
+   116     0003                     	;# 
+   117     0004                     	;# 
+   118     0005                     	;# 
+   119     0006                     	;# 
+   120     0007                     	;# 
+   121     0008                     	;# 
+   122     0009                     	;# 
+   123     000A                     	;# 
+   124     000B                     	;# 
+   125     000C                     	;# 
+   126     000D                     	;# 
+   127     000E                     	;# 
+   128     000E                     	;# 
+   129     000F                     	;# 
+   130     0010                     	;# 
+   131     0011                     	;# 
+   132     0012                     	;# 
+   133     0013                     	;# 
+   134     0014                     	;# 
+   135     0015                     	;# 
+   136     0015                     	;# 
+   137     0016                     	;# 
+   138     0017                     	;# 
+   139     0018                     	;# 
+   140     0019                     	;# 
+   141     001A                     	;# 
+   142     001B                     	;# 
+   143     001B                     	;# 
+   144     001C                     	;# 
+   145     001D                     	;# 
+   146     001E                     	;# 
+   147     001F                     	;# 
+   148     0081                     	;# 
+   149     0085                     	;# 
+   150     0086                     	;# 
+   151     0087                     	;# 
+   152     0088                     	;# 
+   153     0089                     	;# 
+   154     008C                     	;# 
+   155     008D                     	;# 
+   156     008E                     	;# 
+   157     0091                     	;# 
+   158     0092                     	;# 
+   159     0093                     	;# 
+   160     0094                     	;# 
+   161     0098                     	;# 
+   162     0099                     	;# 
+   163     009C                     	;# 
+   164     009D                     	;# 
+   165     009E                     	;# 
+   166     009F                     	;# 
+   167     010C                     	;# 
+   168     010D                     	;# 
+   169     010E                     	;# 
+   170     010F                     	;# 
+   171     018C                     	;# 
+   172     018D                     	;# 
+   173                           
+   174                           	psect	idataCOMMON
+   175     014A                     __pidataCOMMON:
+   176                           
+   177                           ;initializer for _Dummy_PrevSeed
+   178     014A  34AA               	retlw	170
+   179     014B  34AA               	retlw	170
+   180                           
+   181                           ;initializer for _Dummy_PrevD2
+   182     014C  3406               	retlw	6
+   183                           
+   184                           ;initializer for _Dummy_PrevD1
+   185     014D  3403               	retlw	3
+   186     0008                     _PORTD	set	8
+   187     000B                     _INTCONbits	set	11
+   188     000F                     _TMR1H	set	15
+   189     000E                     _TMR1L	set	14
+   190     0010                     _T1CONbits	set	16
+   191     0086                     _TRISB	set	134
+   192     0088                     _TRISD	set	136
+   193     0081                     _OPTION_REGbits	set	129
+   194                           
+   195                           	psect	cinit
+   196     000F                     start_initialization:	
+   197                           ; #config settings
+   198                           
+   199     000F                     __initialization:
+   200                           
+   201                           ; Initialize objects allocated to COMMON
+   202     000F  120A  118A  214A  120A  118A  	fcall	__pidataCOMMON	;fetch initializer
+   203     0014  00F7               	movwf	__pdataCOMMON& (0+127)
+   204     0015  120A  118A  214B  120A  118A  	fcall	__pidataCOMMON+1	;fetch initializer
+   205     001A  00F8               	movwf	(__pdataCOMMON+1)& (0+127)
+   206     001B  120A  118A  214C  120A  118A  	fcall	__pidataCOMMON+2	;fetch initializer
+   207     0020  00F9               	movwf	(__pdataCOMMON+2)& (0+127)
+   208     0021  120A  118A  214D  120A  118A  	fcall	__pidataCOMMON+3	;fetch initializer
+   209     0026  00FA               	movwf	(__pdataCOMMON+3)& (0+127)
+   210                           
+   211                           ; Clear objects allocated to BANK0
+   212     0027  01AC               	clrf	__pbssBANK0& (0+127)
+   213     0028  01AD               	clrf	(__pbssBANK0+1)& (0+127)
+   214     0029  01AE               	clrf	(__pbssBANK0+2)& (0+127)
+   215     002A                     end_of_initialization:	
+   216                           ;End of C runtime variable initialization code
+   217                           
+   218     002A                     __end_of__initialization:
+   219     002A  0183               	clrf	3
+   220     002B  120A  118A  28C8   	ljmp	_main	;jump to C main() function
+   221                           
+   222                           	psect	dataCOMMON
+   223     0077                     __pdataCOMMON:
+   224     0077                     _Dummy_PrevSeed:
+   225     0077                     	ds	2
+   226     0079                     _Dummy_PrevD2:
+   227     0079                     	ds	1
+   228     007A                     _Dummy_PrevD1:
+   229     007A                     	ds	1
+   230                           
+   231                           	psect	bssBANK0
+   232     002C                     __pbssBANK0:
+   233     002C                     _seed:
+   234     002C                     	ds	2
+   235     002E                     _flag:
+   236     002E                     	ds	1
+   237                           
+   238                           	psect	cstackCOMMON
+   239     0070                     __pcstackCOMMON:
+   240     0070                     ?_ExternalInterrupt:
+   241     0070                     ??_ExternalInterrupt:	
+   242                           ; 1 bytes @ 0x0
+   243                           
+   244     0070                     ?_main:	
+   245                           ; 1 bytes @ 0x0
+   246                           
+   247                           
+   248                           ; 1 bytes @ 0x0
+   249     0070                     	ds	2
+   250     0072                     ?_Get_Number:
+   251     0072                     Get_Number@Seed:	
+   252                           ; 1 bytes @ 0x2
+   253                           
+   254                           
+   255                           ; 2 bytes @ 0x2
+   256     0072                     	ds	2
+   257     0074                     ??_Get_Number:
+   258                           
+   259                           ; 1 bytes @ 0x4
+   260     0074                     	ds	3
+   261                           
+   262                           	psect	cstackBANK0
+   263     0020                     __pcstackBANK0:
+   264     0020                     Get_Number@Dice_Number:
+   265                           
+   266                           ; 1 bytes @ 0x0
+   267     0020                     	ds	1
+   268     0021                     Get_Number@OOR_flag:
+   269                           
+   270                           ; 1 bytes @ 0x1
+   271     0021                     	ds	1
+   272     0022                     Get_Number@OOR_Iteration:
+   273                           
+   274                           ; 1 bytes @ 0x2
+   275     0022                     	ds	1
+   276     0023                     Get_Number@D2:
+   277                           
+   278                           ; 1 bytes @ 0x3
+   279     0023                     	ds	1
+   280     0024                     Get_Number@D1:
+   281                           
+   282                           ; 1 bytes @ 0x4
+   283     0024                     	ds	1
+   284     0025                     Get_Number@temp:
+   285                           
+   286                           ; 1 bytes @ 0x5
+   287     0025                     	ds	1
+   288     0026                     ??_main:
+   289                           
+   290                           ; 1 bytes @ 0x6
+   291     0026                     	ds	3
+   292     0029                     main@init:
+   293                           
+   294                           ; 1 bytes @ 0x9
+   295     0029                     	ds	1
+   296     002A                     main@temp:
+   297                           
+   298                           ; 1 bytes @ 0xA
+   299     002A                     	ds	1
+   300     002B                     main@counter:
+   301                           
+   302                           ; 1 bytes @ 0xB
+   303     002B                     	ds	1
+   304                           
+   305                           	psect	maintext
+   306     00C8                     __pmaintext:	
+   307 ;;
+   308 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   309 ;;
+   310 ;; *************** function _main *****************
+   311 ;; Defined at:
+   312 ;;		line 112 in file "Dice_Main.c"
+   313 ;; Parameters:    Size  Location     Type
+   314 ;;		None
+   315 ;; Auto vars:     Size  Location     Type
+   316 ;;  counter         1   11[BANK0 ] unsigned char 
+   317 ;;  temp            1   10[BANK0 ] unsigned char 
+   318 ;;  init            1    9[BANK0 ] unsigned char 
+   319 ;; Return value:  Size  Location     Type
+   320 ;;                  1    wreg      void 
+   321 ;; Registers used:
+   322 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   323 ;; Tracked objects:
+   324 ;;		On entry : B00/0
+   325 ;;		On exit  : 0/0
+   326 ;;		Unchanged: 0/0
+   327 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   328 ;;      Params:         0       0       0       0       0
+   329 ;;      Locals:         0       3       0       0       0
+   330 ;;      Temps:          0       3       0       0       0
+   331 ;;      Totals:         0       6       0       0       0
+   332 ;;Total ram usage:        6 bytes
+   333 ;; Hardware stack levels required when called: 2
+   334 ;; This function calls:
+   335 ;;		_Get_Number
+   336 ;; This function is called by:
+   337 ;;		Startup code after reset
+   338 ;; This function uses a non-reentrant model
+   339 ;;
+   340                           
+   341     00C8                     _main:	
+   342                           ;psect for function _main
+   343                           
+   344     00C8                     l899:	
+   345                           ;incstack = 0
+   346                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   347                           
+   348                           
+   349                           ;Dice_Main.c: 114:     OPTION_REGbits.INTEDG = 0;
+   350     00C8  1683               	bsf	3,5	;RP0=1, select bank1
+   351     00C9  1303               	bcf	3,6	;RP1=0, select bank1
+   352     00CA  1301               	bcf	1,6	;volatile
+   353                           
+   354                           ;Dice_Main.c: 115:     INTCONbits.GIE = 1;
+   355     00CB  178B               	bsf	11,7	;volatile
+   356                           
+   357                           ;Dice_Main.c: 116:     INTCONbits.INTE = 1;
+   358     00CC  160B               	bsf	11,4	;volatile
+   359                           
+   360                           ;Dice_Main.c: 118:     T1CONbits.TMR1ON = 0;
+   361     00CD  1283               	bcf	3,5	;RP0=0, select bank0
+   362     00CE  1303               	bcf	3,6	;RP1=0, select bank0
+   363     00CF  1010               	bcf	16,0	;volatile
+   364                           
+   365                           ;Dice_Main.c: 119:     T1CONbits.TMR1CS = 0b00;
+   366     00D0  1090               	bcf	16,1	;volatile
+   367     00D1                     l901:
+   368                           
+   369                           ;Dice_Main.c: 120:     T1CONbits.T1CKPS = 0b00;
+   370     00D1  30CF               	movlw	-49
+   371     00D2  0590               	andwf	16,f	;volatile
+   372     00D3                     l903:
+   373                           
+   374                           ;Dice_Main.c: 122:     TRISD = 0x00;
+   375     00D3  1683               	bsf	3,5	;RP0=1, select bank1
+   376     00D4  1303               	bcf	3,6	;RP1=0, select bank1
+   377     00D5  0188               	clrf	8	;volatile
+   378     00D6                     l905:
+   379                           
+   380                           ;Dice_Main.c: 123:     PORTD = 0x88;
+   381     00D6  3088               	movlw	136
+   382     00D7  1283               	bcf	3,5	;RP0=0, select bank0
+   383     00D8  1303               	bcf	3,6	;RP1=0, select bank0
+   384     00D9  0088               	movwf	8	;volatile
+   385     00DA                     l907:
+   386                           
+   387                           ;Dice_Main.c: 125:     TRISB = 0xFF;
+   388     00DA  30FF               	movlw	255
+   389     00DB  1683               	bsf	3,5	;RP0=1, select bank1
+   390     00DC  1303               	bcf	3,6	;RP1=0, select bank1
+   391     00DD  0086               	movwf	6	;volatile
+   392     00DE                     l909:
+   393                           
+   394                           ;Dice_Main.c: 127:     unsigned char counter = 0, temp = 0, init = 0;
+   395     00DE  1283               	bcf	3,5	;RP0=0, select bank0
+   396     00DF  1303               	bcf	3,6	;RP1=0, select bank0
+   397     00E0  01AB               	clrf	main@counter
+   398     00E1                     l911:
+   399     00E1                     l913:
+   400     00E1  01A9               	clrf	main@init
+   401     00E2  290E               	goto	l61
+   402     00E3                     l62:
+   403                           
+   404                           ;Dice_Main.c: 131:         {;Dice_Main.c: 132:             init = 1;
+   405     00E3  01A9               	clrf	main@init
+   406     00E4  0AA9               	incf	main@init,f
+   407     00E5                     l915:
+   408                           
+   409                           ;Dice_Main.c: 133:             counter == 0xF ? counter = 0 : counter++;
+   410     00E5  300F               	movlw	15
+   411     00E6  062B               	xorwf	main@counter,w
+   412     00E7  1D03               	btfss	3,2
+   413     00E8  28EA               	goto	u331
+   414     00E9  28EB               	goto	u330
+   415     00EA                     u331:
+   416     00EA  28ED               	goto	l919
+   417     00EB                     u330:
+   418     00EB                     l917:
+   419     00EB  01AB               	clrf	main@counter
+   420     00EC  28F1               	goto	l66
+   421     00ED                     l919:
+   422     00ED  3001               	movlw	1
+   423     00EE  00A6               	movwf	??_main
+   424     00EF  0826               	movf	??_main,w
+   425     00F0  07AB               	addwf	main@counter,f
+   426     00F1                     l66:
+   427                           
+   428                           ;Dice_Main.c: 134:             temp = (counter << 4) | counter;
+   429     00F1  082B               	movf	main@counter,w
+   430     00F2  00A6               	movwf	??_main
+   431     00F3  3003               	movlw	3
+   432     00F4                     u345:
+   433     00F4  1003               	clrc
+   434     00F5  0DA6               	rlf	??_main,f
+   435     00F6  3EFF               	addlw	-1
+   436     00F7  1D03               	skipz
+   437     00F8  28F4               	goto	u345
+   438     00F9  1003               	clrc
+   439     00FA  0D26               	rlf	??_main,w
+   440     00FB  042B               	iorwf	main@counter,w
+   441     00FC  00AA               	movwf	main@temp
+   442     00FD                     l921:
+   443                           
+   444                           ;Dice_Main.c: 135:             PORTD = temp;
+   445     00FD  082A               	movf	main@temp,w
+   446     00FE  0088               	movwf	8	;volatile
+   447     00FF                     l923:
+   448                           
+   449                           ;Dice_Main.c: 136:             _delay((unsigned long)((50)*(16000000/4000.0)));
+   450     00FF  3002               	movlw	2
+   451     0100  1283               	bcf	3,5	;RP0=0, select bank0
+   452     0101  1303               	bcf	3,6	;RP1=0, select bank0
+   453     0102  00A8               	movwf	??_main+2
+   454     0103  3004               	movlw	4
+   455     0104  00A7               	movwf	??_main+1
+   456     0105  30B9               	movlw	185
+   457     0106  00A6               	movwf	??_main
+   458     0107                     u377:
+   459     0107  0BA6               	decfsz	??_main,f
+   460     0108  2907               	goto	u377
+   461     0109  0BA7               	decfsz	??_main+1,f
+   462     010A  2907               	goto	u377
+   463     010B  0BA8               	decfsz	??_main+2,f
+   464     010C  2907               	goto	u377
+   465     010D  290E               	nop2
+   466     010E                     l61:	
+   467                           ;Dice_Main.c: 137:         }
+   468                           
+   469                           
+   470                           ;Dice_Main.c: 130:         while(flag)
+   471     010E  1283               	bcf	3,5	;RP0=0, select bank0
+   472     010F  1303               	bcf	3,6	;RP1=0, select bank0
+   473     0110  082E               	movf	_flag,w
+   474     0111  1D03               	btfss	3,2
+   475     0112  2914               	goto	u351
+   476     0113  2915               	goto	u350
+   477     0114                     u351:
+   478     0114  28E3               	goto	l62
+   479     0115                     u350:
+   480     0115                     l925:
+   481                           
+   482                           ;Dice_Main.c: 138:         if(init == 1)
+   483     0115  0329               	decf	main@init,w
+   484     0116  1D03               	btfss	3,2
+   485     0117  2919               	goto	u361
+   486     0118  291A               	goto	u360
+   487     0119                     u361:
+   488     0119  290E               	goto	l61
+   489     011A                     u360:
+   490     011A                     l927:
+   491                           
+   492                           ;Dice_Main.c: 139:         {;Dice_Main.c: 140:             temp = Get_Number(seed);
+   493     011A  082D               	movf	_seed+1,w
+   494     011B  00F3               	movwf	Get_Number@Seed+1
+   495     011C  082C               	movf	_seed,w
+   496     011D  00F2               	movwf	Get_Number@Seed
+   497     011E  120A  118A  202E  120A  118A  	fcall	_Get_Number
+   498     0123  1283               	bcf	3,5	;RP0=0, select bank0
+   499     0124  1303               	bcf	3,6	;RP1=0, select bank0
+   500     0125  00AA               	movwf	main@temp
+   501     0126                     l929:
+   502                           
+   503                           ;Dice_Main.c: 141:             PORTD = temp;
+   504     0126  082A               	movf	main@temp,w
+   505     0127  0088               	movwf	8	;volatile
+   506     0128  290E               	goto	l61
+   507     0129  120A  118A  280C   	ljmp	start
+   508     012C                     __end_of_main:
+   509                           
+   510                           	psect	text1
+   511     002E                     __ptext1:	
+   512 ;; *************** function _Get_Number *****************
+   513 ;; Defined at:
+   514 ;;		line 63 in file "Dice_Main.c"
+   515 ;; Parameters:    Size  Location     Type
+   516 ;;  Seed            2    2[COMMON] int 
+   517 ;; Auto vars:     Size  Location     Type
+   518 ;;  temp            1    5[BANK0 ] unsigned char 
+   519 ;;  D1              1    4[BANK0 ] unsigned char 
+   520 ;;  D2              1    3[BANK0 ] unsigned char 
+   521 ;;  OOR_Iteratio    1    2[BANK0 ] unsigned char 
+   522 ;;  OOR_flag        1    1[BANK0 ] unsigned char 
+   523 ;;  Dice_Number     1    0[BANK0 ] unsigned char 
+   524 ;; Return value:  Size  Location     Type
+   525 ;;                  1    wreg      unsigned char 
+   526 ;; Registers used:
+   527 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1
+   528 ;; Tracked objects:
+   529 ;;		On entry : 0/0
+   530 ;;		On exit  : 0/0
+   531 ;;		Unchanged: 0/0
+   532 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   533 ;;      Params:         2       0       0       0       0
+   534 ;;      Locals:         0       6       0       0       0
+   535 ;;      Temps:          3       0       0       0       0
+   536 ;;      Totals:         5       6       0       0       0
+   537 ;;Total ram usage:       11 bytes
+   538 ;; Hardware stack levels used: 1
+   539 ;; Hardware stack levels required when called: 1
+   540 ;; This function calls:
+   541 ;;		Nothing
+   542 ;; This function is called by:
+   543 ;;		_main
+   544 ;; This function uses a non-reentrant model
+   545 ;;
+   546                           
+   547     002E                     _Get_Number:	
+   548                           ;psect for function _Get_Number
+   549                           
+   550     002E                     l781:	
+   551                           ;incstack = 0
+   552                           ; Regs used in _Get_Number: [wreg-fsr0h+status,2+status,0+btemp+1]
+   553                           
+   554     002E  1283               	bcf	3,5	;RP0=0, select bank0
+   555     002F  1303               	bcf	3,6	;RP1=0, select bank0
+   556     0030  01A3               	clrf	Get_Number@D2
+   557     0031  01A4               	clrf	Get_Number@D1
+   558     0032  01A5               	clrf	Get_Number@temp
+   559     0033                     l783:
+   560     0033  01A1               	clrf	Get_Number@OOR_flag
+   561     0034  0AA1               	incf	Get_Number@OOR_flag,f
+   562     0035                     l785:
+   563     0035  01A2               	clrf	Get_Number@OOR_Iteration
+   564     0036  0AA2               	incf	Get_Number@OOR_Iteration,f
+   565     0037                     l787:
+   566                           
+   567                           ;Dice_Main.c: 66:     temp = (Seed >> 8);
+   568     0037  0873               	movf	Get_Number@Seed+1,w
+   569     0038  00A5               	movwf	Get_Number@temp
+   570     0039                     l789:
+   571                           
+   572                           ;Dice_Main.c: 67:     temp = (Seed & 0xFF) & temp;
+   573     0039  0825               	movf	Get_Number@temp,w
+   574     003A  0572               	andwf	Get_Number@Seed,w
+   575     003B  00A5               	movwf	Get_Number@temp
+   576     003C                     l791:
+   577                           
+   578                           ;Dice_Main.c: 68:     temp = temp & 0b01110111;
+   579     003C  0825               	movf	Get_Number@temp,w
+   580     003D  3977               	andlw	119
+   581     003E  00A5               	movwf	Get_Number@temp
+   582     003F                     l793:
+   583                           
+   584                           ;Dice_Main.c: 70:     D2 = temp >> 4;
+   585     003F  0825               	movf	Get_Number@temp,w
+   586     0040  00F4               	movwf	??_Get_Number
+   587     0041  3004               	movlw	4
+   588     0042                     u175:
+   589     0042  1003               	clrc
+   590     0043  0CF4               	rrf	??_Get_Number,f
+   591     0044  3EFF               	addlw	-1
+   592     0045  1D03               	skipz
+   593     0046  2842               	goto	u175
+   594     0047  0874               	movf	??_Get_Number,w
+   595     0048  00A3               	movwf	Get_Number@D2
+   596     0049                     l795:
+   597                           
+   598                           ;Dice_Main.c: 71:     D1 = temp & 0b1111;
+   599     0049  0825               	movf	Get_Number@temp,w
+   600     004A  390F               	andlw	15
+   601     004B  00A4               	movwf	Get_Number@D1
+   602                           
+   603                           ;Dice_Main.c: 74:     while ( OOR_flag )
+   604     004C  28B5               	goto	l38
+   605     004D                     l797:
+   606                           
+   607                           ;Dice_Main.c: 75:     {;Dice_Main.c: 76:         if(D1 == 0 || D1 == 7 || D2 == 0 || D2 
+      +                          == 7)
+   608     004D  0824               	movf	Get_Number@D1,w
+   609     004E  1903               	btfsc	3,2
+   610     004F  2851               	goto	u181
+   611     0050  2852               	goto	u180
+   612     0051                     u181:
+   613     0051  2888               	goto	l813
+   614     0052                     u180:
+   615     0052                     l799:
+   616     0052  3007               	movlw	7
+   617     0053  0624               	xorwf	Get_Number@D1,w
+   618     0054  1903               	btfsc	3,2
+   619     0055  2857               	goto	u191
+   620     0056  2858               	goto	u190
+   621     0057                     u191:
+   622     0057  2888               	goto	l813
+   623     0058                     u190:
+   624     0058                     l801:
+   625     0058  0823               	movf	Get_Number@D2,w
+   626     0059  1903               	btfsc	3,2
+   627     005A  285C               	goto	u201
+   628     005B  285D               	goto	u200
+   629     005C                     u201:
+   630     005C  2888               	goto	l813
+   631     005D                     u200:
+   632     005D                     l803:
+   633     005D  3007               	movlw	7
+   634     005E  0623               	xorwf	Get_Number@D2,w
+   635     005F  1D03               	btfss	3,2
+   636     0060  2862               	goto	u211
+   637     0061  2863               	goto	u210
+   638     0062                     u211:
+   639     0062  28AB               	goto	l821
+   640     0063                     u210:
+   641     0063  2888               	goto	l813
+   642     0064                     l805:
+   643                           
+   644                           ;Dice_Main.c: 81:                     temp = temp + Dummy_PrevD1 + Dummy_PrevD2;
+   645     0064  087A               	movf	_Dummy_PrevD1,w
+   646     0065  0725               	addwf	Get_Number@temp,w
+   647     0066  00F4               	movwf	??_Get_Number
+   648     0067  0879               	movf	_Dummy_PrevD2,w
+   649     0068  0774               	addwf	??_Get_Number,w
+   650     0069  00A5               	movwf	Get_Number@temp
+   651                           
+   652                           ;Dice_Main.c: 82:                 break;
+   653     006A  289E               	goto	l815
+   654     006B                     l807:
+   655                           
+   656                           ;Dice_Main.c: 84:                     temp = temp ^ Dummy_PrevSeed;
+   657     006B  0825               	movf	Get_Number@temp,w
+   658     006C  0677               	xorwf	_Dummy_PrevSeed,w
+   659     006D  00A5               	movwf	Get_Number@temp
+   660                           
+   661                           ;Dice_Main.c: 85:                 break;
+   662     006E  289E               	goto	l815
+   663     006F                     l809:
+   664                           
+   665                           ;Dice_Main.c: 87:                     temp = temp + (Dummy_PrevSeed & 0xF);
+   666     006F  300F               	movlw	15
+   667     0070  0577               	andwf	_Dummy_PrevSeed,w
+   668     0071  00F4               	movwf	??_Get_Number
+   669     0072  0825               	movf	Get_Number@temp,w
+   670     0073  0774               	addwf	??_Get_Number,w
+   671     0074  00A5               	movwf	Get_Number@temp
+   672                           
+   673                           ;Dice_Main.c: 88:                 break;
+   674     0075  289E               	goto	l815
+   675     0076                     l811:
+   676                           
+   677                           ;Dice_Main.c: 90:                     temp = temp + ((Dummy_PrevSeed >> 4) & 0xF);
+   678     0076  0878               	movf	_Dummy_PrevSeed+1,w
+   679     0077  00F5               	movwf	??_Get_Number+1
+   680     0078  0877               	movf	_Dummy_PrevSeed,w
+   681     0079  00F4               	movwf	??_Get_Number
+   682     007A  3004               	movlw	4
+   683     007B  00FF               	movwf	btemp+1
+   684     007C                     u225:
+   685     007C  0D75               	rlf	??_Get_Number+1,w
+   686     007D  0CF5               	rrf	??_Get_Number+1,f
+   687     007E  0CF4               	rrf	??_Get_Number,f
+   688     007F  0BFF               	decfsz	btemp+1,f
+   689     0080  287C               	goto	u225
+   690     0081  300F               	movlw	15
+   691     0082  0574               	andwf	??_Get_Number,w
+   692     0083  00F6               	movwf	??_Get_Number+2
+   693     0084  0825               	movf	Get_Number@temp,w
+   694     0085  0776               	addwf	??_Get_Number+2,w
+   695     0086  00A5               	movwf	Get_Number@temp
+   696                           
+   697                           ;Dice_Main.c: 91:             }
+   698     0087  289E               	goto	l815
+   699     0088                     l813:
+   700     0088  0822               	movf	Get_Number@OOR_Iteration,w
+   701     0089  00F4               	movwf	??_Get_Number
+   702     008A  01F5               	clrf	??_Get_Number+1
+   703                           
+   704                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+   705                           ; Switch size 1, requested type "simple"
+   706                           ; Number of cases is 1, Range of values is 0 to 0
+   707                           ; switch strategies available:
+   708                           ; Name         Instructions Cycles
+   709                           ; simple_byte            4     3 (average)
+   710                           ; direct_byte           11     8 (fixed)
+   711                           ; jumptable            260     6 (fixed)
+   712                           ;	Chosen strategy is simple_byte
+   713     008B  0875               	movf	??_Get_Number+1,w
+   714     008C  3A00               	xorlw	0	; case 0
+   715     008D  1903               	skipnz
+   716     008E  2890               	goto	l951
+   717     008F  289E               	goto	l815
+   718     0090                     l951:
+   719                           
+   720                           ; Switch size 1, requested type "simple"
+   721                           ; Number of cases is 4, Range of values is 0 to 3
+   722                           ; switch strategies available:
+   723                           ; Name         Instructions Cycles
+   724                           ; simple_byte           13     7 (average)
+   725                           ; direct_byte           20     8 (fixed)
+   726                           ; jumptable            260     6 (fixed)
+   727                           ;	Chosen strategy is simple_byte
+   728     0090  0874               	movf	??_Get_Number,w
+   729     0091  3A00               	xorlw	0	; case 0
+   730     0092  1903               	skipnz
+   731     0093  2864               	goto	l805
+   732     0094  3A01               	xorlw	1	; case 1
+   733     0095  1903               	skipnz
+   734     0096  286B               	goto	l807
+   735     0097  3A03               	xorlw	3	; case 2
+   736     0098  1903               	skipnz
+   737     0099  286F               	goto	l809
+   738     009A  3A01               	xorlw	1	; case 3
+   739     009B  1903               	skipnz
+   740     009C  2876               	goto	l811
+   741     009D  289E               	goto	l815
+   742     009E                     l815:
+   743                           
+   744                           ;Dice_Main.c: 92:             OOR_Iteration == 3 ? OOR_Iteration = 0 : OOR_Iteration++;
+   745     009E  3003               	movlw	3
+   746     009F  0622               	xorwf	Get_Number@OOR_Iteration,w
+   747     00A0  1D03               	btfss	3,2
+   748     00A1  28A3               	goto	u231
+   749     00A2  28A4               	goto	u230
+   750     00A3                     u231:
+   751     00A3  28A6               	goto	l819
+   752     00A4                     u230:
+   753     00A4                     l817:
+   754     00A4  01A2               	clrf	Get_Number@OOR_Iteration
+   755     00A5  283C               	goto	l791
+   756     00A6                     l819:
+   757     00A6  3001               	movlw	1
+   758     00A7  00F4               	movwf	??_Get_Number
+   759     00A8  0874               	movf	??_Get_Number,w
+   760     00A9  07A2               	addwf	Get_Number@OOR_Iteration,f
+   761     00AA  283C               	goto	l791
+   762     00AB                     l821:
+   763                           
+   764                           ;Dice_Main.c: 95:         {;Dice_Main.c: 96:             Dummy_PrevSeed = Seed;
+   765     00AB  0873               	movf	Get_Number@Seed+1,w
+   766     00AC  00F8               	movwf	_Dummy_PrevSeed+1
+   767     00AD  0872               	movf	Get_Number@Seed,w
+   768     00AE  00F7               	movwf	_Dummy_PrevSeed
+   769                           
+   770                           ;Dice_Main.c: 97:             Dummy_PrevD1 = D1;
+   771     00AF  0824               	movf	Get_Number@D1,w
+   772     00B0  00FA               	movwf	_Dummy_PrevD1
+   773                           
+   774                           ;Dice_Main.c: 98:             Dummy_PrevD2 = D2;
+   775     00B1  0823               	movf	Get_Number@D2,w
+   776     00B2  00F9               	movwf	_Dummy_PrevD2
+   777     00B3                     l823:
+   778                           
+   779                           ;Dice_Main.c: 99:             OOR_flag = 0;
+   780     00B3  01A1               	clrf	Get_Number@OOR_flag
+   781     00B4  283C               	goto	l791
+   782     00B5                     l38:	
+   783                           ;Dice_Main.c: 104:     }
+   784                           
+   785                           
+   786                           ;Dice_Main.c: 74:     while ( OOR_flag )
+   787     00B5  0821               	movf	Get_Number@OOR_flag,w
+   788     00B6  1D03               	btfss	3,2
+   789     00B7  28B9               	goto	u241
+   790     00B8  28BA               	goto	u240
+   791     00B9                     u241:
+   792     00B9  284D               	goto	l797
+   793     00BA                     u240:
+   794     00BA                     l829:
+   795                           
+   796                           ;Dice_Main.c: 106:     Dice_Number = (D2 << 4) | D1;
+   797     00BA  0823               	movf	Get_Number@D2,w
+   798     00BB  00F4               	movwf	??_Get_Number
+   799     00BC  3003               	movlw	3
+   800     00BD                     u255:
+   801     00BD  1003               	clrc
+   802     00BE  0DF4               	rlf	??_Get_Number,f
+   803     00BF  3EFF               	addlw	-1
+   804     00C0  1D03               	skipz
+   805     00C1  28BD               	goto	u255
+   806     00C2  1003               	clrc
+   807     00C3  0D74               	rlf	??_Get_Number,w
+   808     00C4  0424               	iorwf	Get_Number@D1,w
+   809     00C5  00A0               	movwf	Get_Number@Dice_Number
+   810     00C6                     l831:
+   811                           
+   812                           ;Dice_Main.c: 108:     return Dice_Number;
+   813     00C6  0820               	movf	Get_Number@Dice_Number,w
+   814     00C7                     l55:
+   815     00C7  0008               	return
+   816     00C8                     __end_of_Get_Number:
+   817                           
+   818                           	psect	text2
+   819     012C                     __ptext2:	
+   820 ;; *************** function _ExternalInterrupt *****************
+   821 ;; Defined at:
+   822 ;;		line 46 in file "Dice_Main.c"
+   823 ;; Parameters:    Size  Location     Type
+   824 ;;		None
+   825 ;; Auto vars:     Size  Location     Type
+   826 ;;		None
+   827 ;; Return value:  Size  Location     Type
+   828 ;;                  1    wreg      void 
+   829 ;; Registers used:
+   830 ;;		wreg, status,2, status,0
+   831 ;; Tracked objects:
+   832 ;;		On entry : 0/0
+   833 ;;		On exit  : 0/0
+   834 ;;		Unchanged: 0/0
+   835 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   836 ;;      Params:         0       0       0       0       0
+   837 ;;      Locals:         0       0       0       0       0
+   838 ;;      Temps:          2       0       0       0       0
+   839 ;;      Totals:         2       0       0       0       0
+   840 ;;Total ram usage:        2 bytes
+   841 ;; Hardware stack levels used: 1
+   842 ;; This function calls:
+   843 ;;		Nothing
+   844 ;; This function is called by:
+   845 ;;		Interrupt level 1
+   846 ;; This function uses a non-reentrant model
+   847 ;;
+   848                           
+   849     012C                     _ExternalInterrupt:	
+   850                           ;psect for function _ExternalInterrupt
+   851                           
+   852     012C                     i1l839:
+   853                           
+   854                           ;Dice_Main.c: 48:     flag = !flag;
+   855     012C  1283               	bcf	3,5	;RP0=0, select bank0
+   856     012D  1303               	bcf	3,6	;RP1=0, select bank0
+   857     012E  082E               	movf	_flag,w
+   858     012F  1903               	btfsc	3,2
+   859     0130  2932               	goto	u26_21
+   860     0131  2934               	goto	u26_20
+   861     0132                     u26_21:
+   862     0132  3001               	movlw	1
+   863     0133  2935               	goto	u27_20
+   864     0134                     u26_20:
+   865     0134  3000               	movlw	0
+   866     0135                     u27_20:
+   867     0135  00AE               	movwf	_flag
+   868                           
+   869                           ;Dice_Main.c: 50:     if (flag)
+   870     0136  082E               	movf	_flag,w
+   871     0137  1903               	btfsc	3,2
+   872     0138  293A               	goto	u28_21
+   873     0139  293B               	goto	u28_20
+   874     013A                     u28_21:
+   875     013A  293D               	goto	i1l33
+   876     013B                     u28_20:
+   877     013B                     i1l841:
+   878                           
+   879                           ;Dice_Main.c: 51:     {;Dice_Main.c: 52:         T1CONbits.TMR1ON = 1;
+   880     013B  1410               	bsf	16,0	;volatile
+   881                           
+   882                           ;Dice_Main.c: 53:     }
+   883     013C  2942               	goto	i1l845
+   884     013D                     i1l33:	
+   885                           ;Dice_Main.c: 54:     else
+   886                           
+   887                           
+   888                           ;Dice_Main.c: 55:     {;Dice_Main.c: 56:         T1CONbits.TMR1ON = 0;
+   889     013D  1010               	bcf	16,0	;volatile
+   890     013E                     i1l843:
+   891                           
+   892                           ;Dice_Main.c: 57:         seed = (TMR1L | (TMR1H << 8));
+   893     013E  080F               	movf	15,w	;volatile
+   894     013F  00AD               	movwf	_seed+1
+   895     0140  080E               	movf	14,w	;volatile
+   896     0141  00AC               	movwf	_seed
+   897     0142                     i1l845:
+   898                           
+   899                           ;Dice_Main.c: 60:     INTCONbits.INTF = 0;
+   900     0142  108B               	bcf	11,1	;volatile
+   901     0143                     i1l35:
+   902     0143  0871               	movf	??_ExternalInterrupt+1,w
+   903     0144  008A               	movwf	10
+   904     0145  0E70               	swapf	??_ExternalInterrupt,w
+   905     0146  0083               	movwf	3
+   906     0147  0EFE               	swapf	btemp,f
+   907     0148  0E7E               	swapf	btemp,w
+   908     0149  0009               	retfie
+   909     014A                     __end_of_ExternalInterrupt:
+   910     007E                     btemp	set	126	;btemp
+   911     007E                     wtemp0	set	126
+   912                           
+   913                           	psect	intentry
+   914     0004                     __pintentry:	
+   915                           ;incstack = 0
+   916                           ; Regs used in _ExternalInterrupt: [wreg+status,2+status,0]
+   917                           
+   918     0004                     interrupt_function:
+   919     007E                     saved_w	set	btemp
+   920     0004  00FE               	movwf	btemp
+   921     0005  0E03               	swapf	3,w
+   922     0006  00F0               	movwf	??_ExternalInterrupt
+   923     0007  080A               	movf	10,w
+   924     0008  00F1               	movwf	??_ExternalInterrupt+1
+   925     0009  120A  118A  292C   	ljmp	_ExternalInterrupt
+   926                           
+   927                           	psect	idloc
+   928                           
+   929                           ;Config register IDLOC0 @ 0x2000
+   930                           ;	unspecified, using default values
+   931     2000                     	org	8192
+   932     2000  3FFF               	dw	16383
+   933                           
+   934                           ;Config register IDLOC1 @ 0x2001
+   935                           ;	unspecified, using default values
+   936     2001                     	org	8193
+   937     2001  3FFF               	dw	16383
+   938                           
+   939                           ;Config register IDLOC2 @ 0x2002
+   940                           ;	unspecified, using default values
+   941     2002                     	org	8194
+   942     2002  3FFF               	dw	16383
+   943                           
+   944                           ;Config register IDLOC3 @ 0x2003
+   945                           ;	unspecified, using default values
+   946     2003                     	org	8195
+   947     2003  3FFF               	dw	16383
+   948                           
+   949                           	psect	config
+   950                           
+   951                           ;Config register CONFIG @ 0x2007
+   952                           ;	Oscillator Selection bits
+   953                           ;	FOSC = HS, HS oscillator
+   954                           ;	Watchdog Timer Enable bit
+   955                           ;	WDTE = OFF, WDT disabled
+   956                           ;	Power-up Timer Enable bit
+   957                           ;	PWRTE = OFF, PWRT disabled
+   958                           ;	Brown-out Reset Enable bit
+   959                           ;	BOREN = ON, BOR enabled
+   960                           ;	Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit
+   961                           ;	LVP = OFF, RB3 is digital I/O, HV on MCLR must be used for programming
+   962                           ;	Data EEPROM Memory Code Protection bit
+   963                           ;	CPD = OFF, Data EEPROM code protection off
+   964                           ;	Flash Program Memory Write Enable bits
+   965                           ;	WRT = OFF, Write protection off; all program memory may be written to by EECON control
+   966                           ;	In-Circuit Debugger Mode bit
+   967                           ;	DEBUG = 0x1, unprogrammed default
+   968                           ;	Flash Program Memory Code Protection bit
+   969                           ;	CP = OFF, Code protection off
+   970     2007                     	org	8199
+   971     2007  3F7A               	dw	16250
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        4
+    BSS         3
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      7      11
+    BANK0            80     12      15
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_Get_Number
+
+Critical Paths under _ExternalInterrupt in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _main->_Get_Number
+
+Critical Paths under _ExternalInterrupt in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ExternalInterrupt in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ExternalInterrupt in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ExternalInterrupt in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 6     6      0     880
+                                              6 BANK0      6     6      0
+                         _Get_Number
+ ---------------------------------------------------------------------------------
+ (1) _Get_Number                                          11     9      2     670
+                                              2 COMMON     5     3      2
+                                              0 BANK0      6     6      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ExternalInterrupt                                    2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _Get_Number
+
+ _ExternalInterrupt (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BANK3               60      0       0       9        0.0%
+BITBANK3            60      0       0       8        0.0%
+SFR3                 0      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+BANK2               60      0       0      11        0.0%
+BITBANK2            60      0       0      10        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK1            50      0       0       6        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50      C       F       5       18.8%
+BITBANK0            50      0       0       4        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      7       B       1       78.6%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      1A      12        0.0%
+ABS                  0      0      1A       3        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA             100      0       0       0        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.40 build 20220703182018 
+Symbol Table                                                                                   Sun Oct 23 16:45:09 2022
+
+                       l61 010E                         l38 00B5                         l62 00E3  
+                       l55 00C7                         l66 00F1                        l801 0058  
+                      l811 0076                        l803 005D                        l805 0064  
+                      l821 00AB                        l813 0088                        l901 00D1  
+                      l831 00C6                        l823 00B3                        l807 006B  
+                      l815 009E                        l911 00E1                        l903 00D3  
+                      l817 00A4                        l809 006F                        l921 00FD  
+                      l913 00E1                        l905 00D6                        l819 00A6  
+                      l923 00FF                        l915 00E5                        l907 00DA  
+                      l829 00BA                        l781 002E                        l925 0115  
+                      l917 00EB                        l909 00DE                        l951 0090  
+                      l791 003C                        l783 0033                        l927 011A  
+                      l919 00ED                        l793 003F                        l785 0035  
+                      l929 0126                        l795 0049                        l787 0037  
+                      l797 004D                        l789 0039                        l799 0052  
+                      l899 00C8                        u200 005D                        u201 005C  
+                      u210 0063                        u211 0062                        u230 00A4  
+                      u231 00A3                        u240 00BA                        u241 00B9  
+                      u225 007C                        u330 00EB                        u331 00EA  
+                      u180 0052                        u181 0051                        u190 0058  
+                      u350 0115                        u255 00BD                        u191 0057  
+                      u175 0042                        u351 0114                        u360 011A  
+                      u361 0119                        u345 00F4                        u377 0107  
+              main@counter 002B                       i1l33 013D                       i1l35 0143  
+                     _flag 002E                       _main 00C8                       _seed 002C  
+                     btemp 007E                       start 000C                 _Get_Number 002E  
+                    ?_main 0070                      i1l841 013B                      i1l843 013E  
+                    i1l845 0142                      i1l839 012C                      _TMR1H 000F  
+                    _TMR1L 000E                      u26_20 0134                      u26_21 0132  
+                    u27_20 0135                      _PORTD 0008                      u28_20 013B  
+                    u28_21 013A                      _TRISB 0086                      _TRISD 0088  
+                    pclath 000A                      status 0003                      wtemp0 007E  
+          __initialization 000F               __end_of_main 012C                     ??_main 0026  
+           Get_Number@Seed 0072             Get_Number@temp 0025                ?_Get_Number 0072  
+           _Dummy_PrevSeed 0077               __pdataCOMMON 0077                     saved_w 007E  
+  __end_of__initialization 002A             __pcstackCOMMON 0070    Get_Number@OOR_Iteration 0022  
+           _OPTION_REGbits 0081                 __pbssBANK0 002C                 __pmaintext 00C8  
+               __pintentry 0004                    __ptext1 002E                    __ptext2 012C  
+                _T1CONbits 0010       end_of_initialization 002A          _ExternalInterrupt 012C  
+       ?_ExternalInterrupt 0070               ??_Get_Number 0074        ??_ExternalInterrupt 0070  
+       __end_of_Get_Number 00C8  __end_of_ExternalInterrupt 014A              __pidataCOMMON 014A  
+             _Dummy_PrevD1 007A               _Dummy_PrevD2 0079        start_initialization 000F  
+       Get_Number@OOR_flag 0021                  ___latbits 0002              __pcstackBANK0 0020  
+        interrupt_function 0004               Get_Number@D1 0024               Get_Number@D2 0023  
+                 main@init 0029                   main@temp 002A                 _INTCONbits 000B  
+                 intlevel1 0000      Get_Number@Dice_Number 0020  
